@@ -1,6 +1,5 @@
+@use "../../base";
 @use "sass:list";
-
-$grey: rgb(85, 85, 85);
 
 %grid-display {
     display: grid;
@@ -13,45 +12,96 @@ $grey: rgb(85, 85, 85);
     }
 }
 
+@mixin active-cell($valid) {
+    @if $valid {
+        background-color: lightgreen;
+        color: darkgreen;
+        border: 1px solid green;
+    } @else {
+        background-color: lightsalmon;
+        border: 1px solid orangered;
+        color: darkred;
+    }
+    font-weight: 500;
+}
+
 div.container {
     @extend %grid-display;
     width: 40%;
     height: 70%;
     background-color: white;
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
-    padding: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 5px;
     margin-top: 2rem;
 
     div.group {
         @extend %grid-display;
-        border: 1px solid $grey;
         justify-items: center;
         align-items: center;
     }
 
+    div.cell {
+        border: 1px solid base.$grey;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.init {
+        background-color: lightgray;
+    }
+
+    div.valid {
+        @include active-cell(true);
+    }
+
+    div.invalid {
+        @include active-cell(false);
+    }
+
     @for $i from 1 through 9 {
         // for all the groups, collect the sides without a border
-        $sides: ();
+        $sides: (
+        );
 
-        @if $i % 3 == 1 {
-            $sides: list.append($sides, left);
-        } 
+        @for $j from 1 through 9 {
+            // for the individual cells
 
-        @if $i % 3 == 0 {
-            $sides: list.append($sides, right);
+            @if $i % 3==1 and $j % 3==1 {
+
+                $sides: list.append($sides, left);
+
+            }
+
+            @if $i % 3==0 and $j % 3==0 {
+
+                $sides: list.append($sides, right);
+
+            }
+
+            @if $i <=3 and $j <=3 {
+
+                $sides: list.append($sides, top);
+
+            }
+
+            @if $i >=7 and $j >=7 {
+
+                $sides: list.append($sides, bottom);
+
+            }
+
+            div.group:nth-child(#{$i}) {
+
+                div.cell:nth-child(#{$j}) {
+
+                    @include border-color($sides...);
+
+                }
+            }
         }
 
-        @if $i <= 3 {
-            $sides: list.append($sides, top);
-        }
-
-        @if $i >= 7 {
-            $sides: list.append($sides, bottom);
-        }
-
-        div.group:nth-child(#{$i}) {
-            @include border-color($sides...);
-        }
     }
 }

@@ -1,4 +1,4 @@
-$black: rgb(66,66,66);
+@use "../../base";
 
 div.header {
     width: 30%;
@@ -9,6 +9,6 @@ div.header {
     p.text {
         font-size: 2rem;
         font-weight: bold;
-        color: $black;
+        color: base.$black;
     }
 }
