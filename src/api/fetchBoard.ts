@@ -16,3 +16,5 @@ const fetchBoard = async (): Promise<number[][]> => {
 }
 
 export default fetchBoard;
+
+// credit https://sudoku-api.vercel.app/

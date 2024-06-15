@@ -18,6 +18,7 @@ interface APP {
   solve: () => void;
   reset: () => void;
   solving: boolean;
+  time: string;
 }
 
 export interface Element {
@@ -33,13 +34,15 @@ export const AppContext = createContext<APP>({
   visualize: () => { },
   solve: () => { },
   reset: () => { },
-  solving: false
+  solving: false,
+  time: ""
 });
 
 function App() {
 
   const [board, setBoard] = useState<Element[][]>([[]]);
   const [solving, setSolving] = useState(false);
+  const [time, setTime] = useState("0:00:000");
 
   useEffect(() => {
     // create new board first time
@@ -49,7 +52,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, visualize: visualize, solve: solve, reset: reset }}>
+    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, visualize: visualize, solve: solve, reset: reset, time: time }}>
       <Header />
       <Timer />
       <Grid />

@@ -41,9 +41,22 @@ div.container {
         border: 1px solid base.$grey;
         height: 100%;
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+        input {
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            border: none;
+        }
+
+        input:disabled {
+            background-color: lightgray;
+            color: black;
+        }
+
+        input:focus {
+            outline: none;
+        }
     }
 
     div.init {
@@ -101,4 +114,18 @@ div.container {
     }
 
 }
+}
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

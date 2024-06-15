@@ -14,6 +14,5 @@ export default async function newBoard(): Promise<Element[][]> {
             };
         }))
 
-
     return result;
 }

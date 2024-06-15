@@ -32,11 +32,12 @@ export default function Navbar() {
                 <p className={styles.label}>
                     Random
                 </p></div>
-            <div className={styles.tile} onClick={() => reset()}>
+            {/* when users are able to input their own values */}
+            {/* <div className={styles.tile} onClick={() => reset()}>
                 <Icon path={mdiRefresh} size={0.7} />
                 <p className={styles.label}>
                     Reset
-                </p></div>
+                </p></div> */}  
         </div>
     )
 }
