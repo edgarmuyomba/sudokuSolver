@@ -6,12 +6,6 @@
     grid-template-columns: repeat(3, auto);
 }
 
-@mixin border-color($sides...) {
-    @each $side in $sides {
-        border-#{$side}: none;
-    }
-}
-
 @mixin active-cell($valid) {
     @if $valid {
         background-color: lightgreen;
@@ -97,7 +91,7 @@ div.container {
 
                 div.cell:nth-child(#{$j}) {
 
-                    @include border-color($sides...);
+                    @include base.border-color($sides...);
 
                 }
             }
