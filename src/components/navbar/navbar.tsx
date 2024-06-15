@@ -3,11 +3,15 @@ import Icon from "@mdi/react";
 import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle, mdiRefresh } from "@mdi/js";
 
 import { useContext } from "react";
-import { AppContext } from "../../App";
+import { AppContext, Element } from "../../App";
 
 export default function Navbar() {
 
-    const { visualize, solve, newBoard, reset } = useContext(AppContext);
+    const { visualize, solve, newBoard, setBoard, reset } = useContext(AppContext);
+
+    const changeBoard = () => {
+        newBoard().then((board: Element[][]) => setBoard(board));
+    }
 
     return (
         <div className={styles.container}>
@@ -23,7 +27,7 @@ export default function Navbar() {
                     Solve
                 </p>
             </div>
-            <div className={styles.tile} onClick={() => newBoard()}>
+            <div className={styles.tile} onClick={() => changeBoard()}>
                 <Icon path={mdiShuffle} size={0.7} />
                 <p className={styles.label}>
                     Random

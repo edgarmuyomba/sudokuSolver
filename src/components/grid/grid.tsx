@@ -24,7 +24,7 @@ export default function Grid() {
                             {
                                 group.map((cell, index2) => {
                                     return (
-                                        <div key={index2} className={styles.cell}>{cell.value ?? 0}</div>
+                                        <div key={index2} className={`${styles.cell} ${cell.valid === true ? styles.valid : cell.valid === false ? styles.invalid : null} ${cell.init && styles.init}`}>{cell.value ?? '_'}</div>
                                     )
                                 })
                             }

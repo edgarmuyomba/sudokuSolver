@@ -9,7 +9,7 @@ export default async function newBoard(): Promise<Element[][]> {
         row.map((val: number) => {
             return {
                 value: val != 0 ? val : null,
-                init: true,
+                init: val != 0 ? true : null,
                 valid: null,
             };
         }))

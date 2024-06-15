@@ -11,8 +11,9 @@ import reset from './utils/reset'
 import newBoard from './utils/newBoard'
 
 interface APP {
-  newBoard: () => void;
+  newBoard: () => Promise<Element[][]>;
   board: Element[][];
+  setBoard: (board: Element[][]) => void;
   visualize: () => void;
   solve: () => void;
   reset: () => void;
@@ -26,8 +27,9 @@ export interface Element {
 }
 
 export const AppContext = createContext<APP>({
-  newBoard: () => { },
+  newBoard: async () => { return []; },
   board: [],
+  setBoard: () => { },
   visualize: () => { },
   solve: () => { },
   reset: () => { },
@@ -47,7 +49,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ newBoard: newBoard, board: board, solving: solving, visualize: visualize, solve: solve, reset: reset }}>
+    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, visualize: visualize, solve: solve, reset: reset }}>
       <Header />
       <Timer />
       <Grid />
