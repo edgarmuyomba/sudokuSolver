@@ -33,30 +33,13 @@ div.container {
 
     div.group {
         @extend %grid-display;
-        justify-items: center;
-        align-items: center;
     }
 
     div.cell {
         border: 1px solid base.$grey;
-        height: 100%;
-        width: 100%;
-
-        input {
-            height: 100%;
-            width: 100%;
-            text-align: center;
-            border: none;
-        }
-
-        input:disabled {
-            background-color: lightgray;
-            color: black;
-        }
-
-        input:focus {
-            outline: none;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     div.init {
