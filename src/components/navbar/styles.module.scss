@@ -3,7 +3,7 @@
 
 div.container {
     height: 7%;
-    width: 30%;
+    width: 35%;
     margin-top: 2rem;
     border-radius: 25px;
     background-color: white;
@@ -18,7 +18,7 @@ div.container {
         gap: 0.4rem;
         height: 100%;
         cursor: pointer;
-        padding: 0 1.5rem;
+        padding: 0 1rem;
 
         p.label {
             font-size: 0.8rem;
@@ -26,7 +26,6 @@ div.container {
     }
 
     div.tile:hover {
-        // background-color: lightgrey;
         box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
     }
 }

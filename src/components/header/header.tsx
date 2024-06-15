@@ -3,9 +3,9 @@ import styles from "./styles.module.scss";
 export default function Header() {
     return (
         <div className={styles.header}>
-            <p className={styles.text}>
+            <a target="_blank" href="https://edgar-muyomba.vercel.app" className={styles.text}>
                 Sudokuuuuuuuuuuuu
-            </p>
+            </a>
         </div>
     )
 }
