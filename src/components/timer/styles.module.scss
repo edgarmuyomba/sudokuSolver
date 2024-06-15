@@ -1,0 +1,20 @@
+$grey: rgb(85, 85, 85);
+$blue: rgb(0, 101, 216);
+
+div.container {
+    border: 1px solid $grey;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-top: 1rem;
+    color: $blue;
+
+    p.text {
+        font-size: 0.8rem;
+    }
+
+    span {
+        font-size: 0.5rem;
+    }
+
+}
