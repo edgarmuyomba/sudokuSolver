@@ -1,0 +1,57 @@
+@use "sass:list";
+
+$grey: rgb(85, 85, 85);
+
+%grid-display {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+@mixin border-color($sides...) {
+    @each $side in $sides {
+        border-#{$side}: none;
+    }
+}
+
+div.container {
+    @extend %grid-display;
+    width: 40%;
+    height: 70%;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+
+    div.group {
+        @extend %grid-display;
+        border: 1px solid $grey;
+        justify-items: center;
+        align-items: center;
+    }
+
+    @for $i from 1 through 9 {
+        // for all the groups, collect the sides without a border
+        $sides: ();
+
+        @if $i % 3 == 1 {
+            $sides: list.append($sides, left);
+        } 
+
+        @if $i % 3 == 0 {
+            $sides: list.append($sides, right);
+        }
+
+        @if $i <= 3 {
+            $sides: list.append($sides, top);
+        }
+
+        @if $i >= 7 {
+            $sides: list.append($sides, bottom);
+        }
+
+        div.group:nth-child(#{$i}) {
+            @include border-color($sides...);
+        }
+    }
+}

@@ -1,4 +1,5 @@
-import './App.css'
+import './App.scss'
+import Grid from './components/grid/grid'
 import Header from './components/header/header'
 import Timer from './components/timer/timer'
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Header />
       <Timer />
+      <Grid />
     </>
   )
 }
