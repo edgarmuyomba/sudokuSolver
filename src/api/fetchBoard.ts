@@ -1,4 +1,4 @@
-const fetchBoard = async () => {
+const fetchBoard = async (): Promise<number[][]> => {
     let board: number[][] = [];
     try {
 

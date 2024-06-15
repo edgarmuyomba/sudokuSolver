@@ -11,11 +11,14 @@
         background-color: lightgreen;
         color: darkgreen;
         border: 1px solid green;
-    } @else {
+    }
+
+    @else {
         background-color: lightsalmon;
         border: 1px solid orangered;
         color: darkred;
     }
+
     font-weight: 500;
 }
 
@@ -60,42 +63,42 @@ div.container {
         $sides: (
         );
 
-        @for $j from 1 through 9 {
-            // for the individual cells
+    @for $j from 1 through 9 {
+        // for the individual cells
 
-            @if $i % 3==1 and $j % 3==1 {
+        @if $i % 3==1 and $j % 3==1 {
 
-                $sides: list.append($sides, left);
+            $sides: list.append($sides, left);
 
-            }
-
-            @if $i % 3==0 and $j % 3==0 {
-
-                $sides: list.append($sides, right);
-
-            }
-
-            @if $i <=3 and $j <=3 {
-
-                $sides: list.append($sides, top);
-
-            }
-
-            @if $i >=7 and $j >=7 {
-
-                $sides: list.append($sides, bottom);
-
-            }
-
-            div.group:nth-child(#{$i}) {
-
-                div.cell:nth-child(#{$j}) {
-
-                    @include base.border-color($sides...);
-
-                }
-            }
         }
 
+        @if $i % 3==0 and $j % 3==0 {
+
+            $sides: list.append($sides, right);
+
+        }
+
+        @if $i <=3 and $j <=3 {
+
+            $sides: list.append($sides, top);
+
+        }
+
+        @if $i >=7 and $j >=7 {
+
+            $sides: list.append($sides, bottom);
+
+        }
+
+        div.group:nth-child(#{$i}) {
+
+            div.cell:nth-child(#{$j}) {
+
+                @include base.border-color($sides...);
+
+            }
+        }
     }
+
+}
 }
