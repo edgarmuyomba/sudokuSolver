@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import Icon from "@mdi/react";
 import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle, mdiTimerOutline } from "@mdi/js";
 
-import { ChangeEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext, Element, Speed } from "../../App";
 import solveSudoku from "../../algorithm/solver";
 

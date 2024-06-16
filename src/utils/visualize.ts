@@ -1,6 +1,6 @@
 import { Element, Speed } from "../App";
 
-export default async function visualize(setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void, speed: Speed): Promise<void> {
+export default async function visualize(setTime: (time: string) => void, setBoard: (board: Element[][]) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void, speed: Speed): Promise<void> {
     // clear
     setTime("00:000");
     setDisabled(true);
