@@ -1,14 +1,14 @@
 import styles from "./styles.module.scss";
 import Icon from "@mdi/react";
-import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle } from "@mdi/js";
+import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle, mdiTimerOutline } from "@mdi/js";
 
-import { useContext, useState } from "react";
-import { AppContext, Element } from "../../App";
+import { ChangeEvent, useContext, useState } from "react";
+import { AppContext, Element, Speed } from "../../App";
 import solveSudoku from "../../algorithm/solver";
 
 export default function Navbar() {
 
-    const { visualize, newBoard, setBoard, setSolving, board, setTime, disabled, setDisabled } = useContext(AppContext);
+    const { visualize, newBoard, setBoard, setSolving, board, setTime, disabled, setDisabled, setSpeed, speed } = useContext(AppContext);
 
     const [steps, setSteps] = useState<Element[][][]>([]);
 
@@ -38,9 +38,28 @@ export default function Navbar() {
         setDisabled(false);
     }
 
+    const changeSpeed = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        let value = event.target.value;
+        if (value === 'Fast') {
+            setSpeed(Speed.Fast);
+        } else if (value === 'Medium') {
+            setSpeed(Speed.Medium);
+        } else {
+            setSpeed(Speed.Slow);
+        }
+    }
+
     return (
         <div className={styles.container}>
-            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : steps.length > 0 ? () => visualize(setTime, setBoard, setSolving, steps, setDisabled) : () => { }}>
+            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile}>
+                <Icon path={mdiTimerOutline} size={0.7} />
+                <select name="speed" id="speed" disabled={disabled} onChange={changeSpeed}>
+                    <option value={Speed.Fast} selected>Fast</option>
+                    <option value={Speed.Medium}>Medium</option>
+                    <option value={Speed.Slow}>Slow</option>
+                </select>
+            </div>
+            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : steps.length > 0 ? () => visualize(setTime, setBoard, setSolving, steps, setDisabled, speed) : () => { }}>
                 <Icon path={mdiPlayBoxOutline} size={0.7} />
                 <p className={styles.label}>
                     Visualize
@@ -57,12 +76,6 @@ export default function Navbar() {
                 <p className={styles.label}>
                     Random
                 </p></div>
-            {/* when users are able to input their own values */}
-            {/* <div className={styles.tile} onClick={() => reset()}>
-                <Icon path={mdiRefresh} size={0.7} />
-                <p className={styles.label}>
-                    Reset
-                </p></div> */}
         </div>
     )
 }

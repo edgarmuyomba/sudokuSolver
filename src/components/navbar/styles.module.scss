@@ -18,9 +18,13 @@ div.container {
         gap: 0.4rem;
         height: 100%;
         cursor: pointer;
-        padding: 0 1.5rem;
+        padding: 0 0.8rem;
 
         p.label {
+            font-size: 0.8rem;
+        }
+
+        select {
             font-size: 0.8rem;
         }
     }

@@ -13,7 +13,7 @@ interface APP {
   newBoard: () => Promise<Element[][]>;
   board: Element[][];
   setBoard: (board: Element[][]) => void;
-  visualize: (setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void) => void;
+  visualize: (setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void, speed: Speed) => void;
   reset: () => void;
   solving: boolean;
   setSolving: (solving: boolean) => void,
@@ -21,6 +21,14 @@ interface APP {
   setTime: (time: string) => void;
   disabled: boolean;
   setDisabled: (disabled: boolean) => void;
+  speed: Speed;
+  setSpeed: (speed: Speed) => void;
+}
+
+export enum Speed {
+  Fast = 'Fast',
+  Medium = 'Medium',
+  Slow = 'Slow'
 }
 
 export interface Element {
@@ -40,7 +48,9 @@ export const AppContext = createContext<APP>({
   time: "",
   setTime: () => { },
   disabled: false,
-  setDisabled: () => { }
+  setDisabled: () => { },
+  speed: Speed.Fast,
+  setSpeed: () => { }
 });
 
 function App() {
@@ -49,6 +59,7 @@ function App() {
   const [solving, setSolving] = useState(false);
   const [time, setTime] = useState("00:000");
   const [disabled, setDisabled] = useState(false);
+  const [speed, setSpeed] = useState(Speed.Fast);
 
   useEffect(() => {
     // create new board first time
@@ -58,7 +69,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, setSolving: setSolving, visualize: visualize, reset: reset, time: time, setTime: setTime, disabled: disabled, setDisabled: setDisabled }}>
+    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, setSolving: setSolving, visualize: visualize, reset: reset, time: time, setTime: setTime, disabled: disabled, setDisabled: setDisabled, speed: speed, setSpeed: setSpeed }}>
       <Header />
       <Timer />
       <Grid />
