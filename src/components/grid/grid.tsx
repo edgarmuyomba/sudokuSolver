@@ -15,7 +15,8 @@ export default function Grid() {
         setGrid(formattedBoard);
     }, [board]);
 
-    return ( 
+
+    return (
         <div className={styles.container}>
             {
                 grid.map((group, index) => {
@@ -27,8 +28,7 @@ export default function Grid() {
                                         <div key={index2}
                                             style={{ color: `${!cell.value ? 'transparent' : 'black'}` }}
                                             className={`${styles.cell} ${cell.valid === true ? styles.valid : cell.valid === false ? styles.invalid : null} ${cell.init && styles.init}`}>
-                                                {cell.value ?? '_'}
-                                            {/* <input defaultValue={cell.value ? `${cell.value}` : ''} disabled={true} type="number" name="" id=""></input> change disabled when can manage user input */}
+                                            {cell.value ?? '_'}
                                         </div>
                                     )
                                 })

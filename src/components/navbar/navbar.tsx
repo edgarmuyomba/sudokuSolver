@@ -1,16 +1,25 @@
 import styles from "./styles.module.scss";
 import Icon from "@mdi/react";
-import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle, mdiRefresh } from "@mdi/js";
+import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle } from "@mdi/js";
 
 import { useContext } from "react";
 import { AppContext, Element } from "../../App";
 
 export default function Navbar() {
 
-    const { visualize, solve, newBoard, setBoard, reset } = useContext(AppContext);
+    const { visualize, solve, newBoard, setBoard, setSolving } = useContext(AppContext);
 
     const changeBoard = () => {
         newBoard().then((board: Element[][]) => setBoard(board));
+    }
+
+
+
+    const handleSolve = () => {
+        setSolving(true);
+
+        // simulating solving
+        setTimeout(() => setSolving(false), 10000);
     }
 
     return (
@@ -21,7 +30,7 @@ export default function Navbar() {
                     Visualize
                 </p>
             </div>
-            <div className={styles.tile} onClick={() => solve()}>
+            <div className={styles.tile} onClick={() => handleSolve()}>
                 <Icon path={mdiCheckboxOutline} size={0.7} />
                 <p className={styles.label}>
                     Solve

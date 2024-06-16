@@ -18,7 +18,9 @@ interface APP {
   solve: () => void;
   reset: () => void;
   solving: boolean;
+  setSolving: (solving: boolean) => void,
   time: string;
+  setTime: (time: string) => void;
 }
 
 export interface Element {
@@ -35,7 +37,9 @@ export const AppContext = createContext<APP>({
   solve: () => { },
   reset: () => { },
   solving: false,
-  time: ""
+  setSolving: () => {},
+  time: "",
+  setTime: () => {}
 });
 
 function App() {
@@ -52,7 +56,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, visualize: visualize, solve: solve, reset: reset, time: time }}>
+    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, setSolving: setSolving, visualize: visualize, solve: solve, reset: reset, time: time, setTime: setTime }}>
       <Header />
       <Timer />
       <Grid />
