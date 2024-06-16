@@ -8,7 +8,7 @@ import solveSudoku from "../../algorithm/solver";
 
 export default function Navbar() {
 
-    const { visualize, newBoard, setBoard, setSolving, board, setTime } = useContext(AppContext);
+    const { visualize, newBoard, setBoard, setSolving, board, setTime, disabled, setDisabled } = useContext(AppContext);
 
     const [steps, setSteps] = useState<Element[][][]>([]);
 
@@ -19,6 +19,8 @@ export default function Navbar() {
 
     const handleSolve = () => {
 
+        setDisabled(true);
+
         setSolving(true);
 
         let tmpBoard = [...board];
@@ -26,29 +28,31 @@ export default function Navbar() {
         setSteps(solvingSteps);
 
         console.log(solvingSteps[5]);
-        
+
 
         setBoard(tmpBoard);
 
         setTimeout(() =>
             setSolving(false), 50);
+
+        setDisabled(false);
     }
 
     return (
         <div className={styles.container}>
-            <div className={styles.tile} onClick={steps.length > 0 ? () => visualize(setTime, setBoard, setSolving, steps) : () => {}}>
+            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : steps.length > 0 ? () => visualize(setTime, setBoard, setSolving, steps, setDisabled) : () => { }}>
                 <Icon path={mdiPlayBoxOutline} size={0.7} />
                 <p className={styles.label}>
                     Visualize
                 </p>
             </div>
-            <div className={styles.tile} onClick={() => handleSolve()}>
+            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : () => handleSolve()}>
                 <Icon path={mdiCheckboxOutline} size={0.7} />
                 <p className={styles.label}>
                     Solve
                 </p>
             </div>
-            <div className={styles.tile} onClick={() => changeBoard()}>
+            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : () => changeBoard()}>
                 <Icon path={mdiShuffle} size={0.7} />
                 <p className={styles.label}>
                     Random

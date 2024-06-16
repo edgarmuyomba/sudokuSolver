@@ -1,8 +1,9 @@
 import { Element } from "../App";
 
-export default async function visualize(setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][]): Promise<void> {
+export default async function visualize(setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void): Promise<void> {
     // clear
     setTime("00:000");
+    setDisabled(true);
     setBoard([]);
     setSolving(true);
 
@@ -13,4 +14,5 @@ export default async function visualize(setTime: (time: string) => void, setBoar
     }
 
     setSolving(false);
+    setDisabled(false);
 }
