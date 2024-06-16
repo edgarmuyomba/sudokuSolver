@@ -9,7 +9,7 @@ export default async function visualize(setTime: (time: string) => void, setBoar
     // animate
     for (let step of solvingSteps) {
         setBoard(step);
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise(resolve => setTimeout(resolve, 300));
     }
 
     setSolving(false);

@@ -28,11 +28,13 @@ function solve(board: Element[][], steps: Element[][][]): boolean {
                             return true;
                         }
                         board[i][j] = {
-                            value: null,
+                            value: num,
                             valid: false,
                             init: null
                         };
                         steps.push(board.map(row => row.map(cell => ({ ...cell }))));
+                        board[i][j].value = null;
+                        board[i][j].valid = true;
                     }
 
                 }

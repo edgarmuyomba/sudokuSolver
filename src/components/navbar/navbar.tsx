@@ -25,6 +25,9 @@ export default function Navbar() {
         let solvingSteps = solveSudoku(tmpBoard);
         setSteps(solvingSteps);
 
+        console.log(solvingSteps[5]);
+        
+
         setBoard(tmpBoard);
 
         setTimeout(() =>

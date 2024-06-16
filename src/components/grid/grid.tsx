@@ -27,7 +27,7 @@ export default function Grid() {
                                     return (
                                         <div key={index2}
                                             style={{ color: `${!cell.value ? 'transparent' : 'black'}` }}
-                                            className={`${styles.cell} ${cell.init ? styles.init : cell.valid === true ? styles.valid : cell.valid === false ? styles.invalid : null}`}>
+                                            className={`${styles.cell} ${cell.init ? styles.init : cell.value ? (cell.valid === true ? styles.valid : cell.valid === false ? styles.invalid : null) : null}`}>
                                             {cell.value ?? '_'}
                                         </div>
                                     )
