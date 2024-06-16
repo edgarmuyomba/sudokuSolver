@@ -4,10 +4,11 @@ import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle } from "@mdi/js";
 
 import { useContext } from "react";
 import { AppContext, Element } from "../../App";
+import solveSudoku from "../../algorithm/solver";
 
 export default function Navbar() {
 
-    const { visualize, solve, newBoard, setBoard, setSolving } = useContext(AppContext);
+    const { visualize, solve, newBoard, setBoard, setSolving, board } = useContext(AppContext);
 
     const changeBoard = () => {
         newBoard().then((board: Element[][]) => setBoard(board));
@@ -16,10 +17,16 @@ export default function Navbar() {
 
 
     const handleSolve = () => {
-        setSolving(true);
+        // setSolving(true);
 
         // simulating solving
-        setTimeout(() => setSolving(false), 10000);
+        // setTimeout(() => setSolving(false), 10000);
+
+        let tmpBoard = [...board];
+        solveSudoku(tmpBoard);
+        setBoard(tmpBoard);
+        
+
     }
 
     return (
@@ -46,7 +53,7 @@ export default function Navbar() {
                 <Icon path={mdiRefresh} size={0.7} />
                 <p className={styles.label}>
                     Reset
-                </p></div> */}  
+                </p></div> */}
         </div>
     )
 }

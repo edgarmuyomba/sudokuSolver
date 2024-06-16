@@ -1,19 +1,33 @@
-function solveSudoku(board: string[][]): void {
+import { Element } from "../App";
+
+export default function solveSudoku(board: Element[][]): void {
     solve(board);
+
 }
 
-function solve(board: string[][]): boolean {
+function solve(board: Element[][]): boolean {
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            if (board[i][j] === '.') {
+            if (board[i][j].value == null) {
                 for (let num = 1; num <= 9; num++) {
-                    if (isValid(board, i, j, num.toString())) {
-                        board[i][j] = num.toString();
+                    if (isValid(board, i, j, num)) {
+
+                        board[i][j] = {
+                            value: num,
+                            valid: true,
+                            init: null
+                        };
                         if (solve(board)) {
                             return true;
                         }
-                        board[i][j] = '.';
+                        board[i][j] = {
+                            value: null,
+                            valid: false,
+                            init: null
+                        };;
                     }
+
                 }
                 return false;
             }
@@ -22,15 +36,16 @@ function solve(board: string[][]): boolean {
     return true;
 }
 
-function isValid(board: string[][], row: number, col: number, num: string): boolean {
+function isValid(board: Element[][], row: number, col: number, num: number): boolean {
+
     for (let i = 0; i < 9; i++) {
-        if (board[i][col] === num) {
+        if (board[i][col].value === num) {
             return false;
         }
-        if (board[row][i] === num) {
+        if (board[row][i].value === num) {
             return false;
         }
-        if (board[3 * Math.floor(row / 3) + Math.floor(i / 3)][3 * Math.floor(col / 3) + i % 3] === num) {
+        if (board[3 * Math.floor(row / 3) + Math.floor(i / 3)][3 * Math.floor(col / 3) + i % 3].value === num) {
             return false;
         }
     }

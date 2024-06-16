@@ -56,7 +56,6 @@ export default function Timer() {
 
             setSec(_sec);
             setMin(_min);
-            setMs(_ms);
 
             return _ms;
         });
