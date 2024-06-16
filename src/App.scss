@@ -9,3 +9,16 @@ $white: #F9F9F9;
   flex-direction: column;
   background-color: $white;
 }
+
+@media (max-width: 1024px) {
+  #root {
+    padding-top: 3rem;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #root {
+    padding-top: 5rem;
+  }
+}

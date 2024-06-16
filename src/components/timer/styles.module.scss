@@ -15,3 +15,27 @@ div.container {
     }
 
 }
+
+@media (max-width: 1024px) {
+    div.container {
+
+        margin-top: 0;
+
+        p.text {
+
+            font-size: 1rem;
+
+        }
+
+    }
+}
+
+@media (max-width: 767px) {
+    div.container {
+        margin-top: 1rem;
+
+        p.text {
+            font-size: 1.2rem;
+        }
+    }
+  }

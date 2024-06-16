@@ -113,3 +113,26 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+@media (max-width: 1024px) {
+    div.container {
+        width: 85%;
+        margin-top: 2rem;
+    }
+
+    div.cell {
+        font-size: 1.1rem;
+    };
+}
+
+@media (max-width: 767px) {
+    div.container {
+        height: 60%;
+        width: 80%;
+        margin-top: 2rem;
+    }
+
+    div.cell {
+        font-size: 1.2rem;
+    }
+}
