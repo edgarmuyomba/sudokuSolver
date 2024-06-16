@@ -59,7 +59,7 @@ export default function Navbar() {
                     <option value={Speed.Slow}>Slow</option>
                 </select>
             </div>
-            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : steps.length > 0 ? () => visualize(setTime, setBoard, setSolving, steps, setDisabled, speed) : () => { }}>
+            <div style={{ color: `${disabled ? 'lightgray' : ''}` }} className={styles.tile} onClick={disabled ? () => { } : steps.length > 0 ? () => visualize(setTime, setBoard, steps, setDisabled, speed) : () => { }}>
                 <Icon path={mdiPlayBoxOutline} size={0.7} />
                 <p className={styles.label}>
                     Visualize

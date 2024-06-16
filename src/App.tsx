@@ -14,7 +14,7 @@ interface APP {
   newBoard: () => Promise<Element[][]>;
   board: Element[][];
   setBoard: (board: Element[][]) => void;
-  visualize: (setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void, speed: Speed) => void;
+  visualize: (setTime: (time: string) => void, setBoard: (board: Element[][]) => void, solvingSteps: Element[][][], setDisabled: (disabled: boolean) => void, speed: Speed) => void;
   reset: () => void;
   solving: boolean;
   setSolving: (solving: boolean) => void,
