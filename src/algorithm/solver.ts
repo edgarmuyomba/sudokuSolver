@@ -1,31 +1,38 @@
 import { Element } from "../App";
 
-export default function solveSudoku(board: Element[][]): void {
-    solve(board);
+export default function solveSudoku(board: Element[][]): Element[][][] {
+
+    let solvingSteps = [board.map(row => row.map(cell => ({ ...cell })))];
+
+
+    solve(board, solvingSteps);
+
+    return solvingSteps;
 
 }
 
-function solve(board: Element[][]): boolean {
+function solve(board: Element[][], steps: Element[][][]): boolean {
 
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if (board[i][j].value == null) {
                 for (let num = 1; num <= 9; num++) {
                     if (isValid(board, i, j, num)) {
-
                         board[i][j] = {
                             value: num,
                             valid: true,
                             init: null
                         };
-                        if (solve(board)) {
+                        steps.push(board.map(row => row.map(cell => ({ ...cell }))));
+                        if (solve(board, steps)) {
                             return true;
                         }
                         board[i][j] = {
                             value: null,
                             valid: false,
                             init: null
-                        };;
+                        };
+                        steps.push(board.map(row => row.map(cell => ({ ...cell }))));
                     }
 
                 }

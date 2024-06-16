@@ -46,7 +46,7 @@ function App() {
 
   const [board, setBoard] = useState<Element[][]>([[]]);
   const [solving, setSolving] = useState(false);
-  const [time, setTime] = useState("0:00:000");
+  const [time, setTime] = useState("00:000");
 
   useEffect(() => {
     // create new board first time

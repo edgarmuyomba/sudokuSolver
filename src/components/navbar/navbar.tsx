@@ -17,16 +17,17 @@ export default function Navbar() {
 
 
     const handleSolve = () => {
-        // setSolving(true);
 
-        // simulating solving
-        // setTimeout(() => setSolving(false), 10000);
+        setSolving(true);
 
         let tmpBoard = [...board];
-        solveSudoku(tmpBoard);
-        setBoard(tmpBoard);
+        let solvingSteps = solveSudoku(tmpBoard);
         
+        setBoard(tmpBoard);
 
+
+        setTimeout(() =>
+            setSolving(false), 50);
     }
 
     return (

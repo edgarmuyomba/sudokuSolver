@@ -1,21 +1,20 @@
 import { AppContext } from "../../App";
 import styles from "./styles.module.scss";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 export default function Timer() {
 
     const { time, setTime, solving } = useContext(AppContext);
 
-    const [min, setMin] = useState(0);
-    const [sec, setSec] = useState(0);
-    const [ms, setMs] = useState(0);
+    const startTimeRef = useRef<number | null>(null);
 
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        
+
         if (solving) {
+            startTimeRef.current = performance.now();
             const _intervalId = setInterval(() => incrementTime(), 1);
             setIntervalId(_intervalId);
         } else if (intervalId) {
@@ -32,39 +31,25 @@ export default function Timer() {
 
 
     const incrementTime = () => {
-        setMs(prevMs => {
-            let _ms = prevMs + 1;
-            let _sec = sec;
-            let _min = min;
+        if (startTimeRef.current !== null) {
+            const elapsed = performance.now() - startTimeRef.current;
+            const totalMicroseconds = elapsed * 1000; // Convert milliseconds to microseconds
 
-            if (_ms === 1000) {
-                _sec += 1;
-                _ms = 0;
-            }
-
-            if (_sec === 60) {
-                _min += 1;
-                _sec = 0;
-            }
+            const ms = Math.floor(elapsed); // Milliseconds
+            const mi = Math.floor((totalMicroseconds % 1000)); // Microseconds
 
             let newTime = '';
-            newTime += `${_min}:`;
-            newTime += `${_sec.toString().padStart(2, '0')}:`;
-            newTime += `${_ms.toString().padStart(3, '0')}`;
+            newTime += `${ms.toString().padStart(2, '0')}:`;
+            newTime += `${mi.toString().padStart(3, '0')}`;
 
             setTime(newTime);
-
-            setSec(_sec);
-            setMin(_min);
-
-            return _ms;
-        });
+        }
     };
 
     return (
         <div className={styles.container}>
             <p className={styles.text}>
-                {time} <span>ms</span>
+                {time} <span>mi</span>
             </p>
         </div>
     )
