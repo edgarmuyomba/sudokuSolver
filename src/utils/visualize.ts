@@ -5,7 +5,7 @@ export default async function visualize(setTime: (time: string) => void, setBoar
     setTime("00:000");
     setDisabled(true);
     setBoard([]);
-    setSolving(true);
+    // setSolving(true);
 
     // time
     let wait = 50;
@@ -27,6 +27,6 @@ export default async function visualize(setTime: (time: string) => void, setBoar
         await new Promise(resolve => setTimeout(resolve, wait));
     }
 
-    setSolving(false);
+    // setSolving(false);
     setDisabled(false);
 }

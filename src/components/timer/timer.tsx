@@ -49,7 +49,7 @@ export default function Timer() {
     return (
         <div className={styles.container}>
             <p className={styles.text}>
-                {time} <span>mi</span>
+                {time} <span></span>
             </p>
         </div>
     )

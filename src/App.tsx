@@ -8,6 +8,7 @@ import { createContext, useState, useEffect } from 'react';
 import visualize from './utils/visualize'
 import reset from './utils/reset'
 import newBoard from './utils/newBoard'
+import Footer from './components/footer/footer'
 
 interface APP {
   newBoard: () => Promise<Element[][]>;
@@ -74,6 +75,7 @@ function App() {
       <Timer />
       <Grid />
       <Navbar />
+      <Footer />
     </AppContext.Provider>
   )
 }
