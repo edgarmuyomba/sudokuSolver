@@ -2,7 +2,7 @@ const fetchBoard = async (): Promise<number[][]> => {
     let board: number[][] = [];
     try {
 
-        var response = await fetch('htt://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value}}}');
+        var response = await fetch('https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value}}}');
         var body = await response.json();
         board = body['newboard']['grids']['0']['value'];
 

@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Sudoku Solver
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a react application used to solve the famous numbers game, [Sudoku](https://sudoku.com). Currently it only provides the ability to generate a random puzzle from an open source api, [Dosuku](https://sudoku-api.vercel.app/), solve the given board and visualize the working algorithm.
 
-Currently, two official plugins are available:
+This project demonstrates my understanding of the working of simple algorithms and their use for complex use cases. In this case, the working of the backtracking algorithm and the use of matrices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The live project can be found [here](https://sudoku-solver-eight-pi.vercel.app/).
 
-## Expanding the ESLint configuration
+## Final Solution
+![Final Solution](./screenshots/complete.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Working Visualization
+![Visualization](./screenshots/solving.png)
 
-- Configure the top-level `parserOptions` property like this:
+## Setting up dev
+1. Clone the repository
+   ```bash
+   git clone <url>
+   ```
+2. Install the necessary dependencies
+   ```bash
+   npm install
+   ```
+3. Run the server
+   ```bash
+   npm run dev
+   ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Technologies
+1. [React](https://react.dev/)
+2. [Typescript](https://www.typescriptlang.org/)
+3. [Scss](https://sass-lang.com/)

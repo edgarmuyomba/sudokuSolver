@@ -5,6 +5,7 @@ div.header {
     height: 7%;
     display: flex;
     justify-content: center;
+    transform: rotateY(180deg);
 
     a.text {
         font-size: 2rem;
