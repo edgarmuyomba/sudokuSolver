@@ -6,7 +6,6 @@ import Timer from './components/timer/timer'
 
 import { createContext, useState, useEffect } from 'react';
 import visualize from './utils/visualize'
-import solve from './utils/solve'
 import reset from './utils/reset'
 import newBoard from './utils/newBoard'
 
@@ -14,8 +13,7 @@ interface APP {
   newBoard: () => Promise<Element[][]>;
   board: Element[][];
   setBoard: (board: Element[][]) => void;
-  visualize: () => void;
-  solve: () => void;
+  visualize: (setTime: (time: string) => void, setBoard: (board: Element[][]) => void, setSolving: (solving: boolean) => void, solvingSteps: Element[][][]) => void;
   reset: () => void;
   solving: boolean;
   setSolving: (solving: boolean) => void,
@@ -34,12 +32,11 @@ export const AppContext = createContext<APP>({
   board: [],
   setBoard: () => { },
   visualize: () => { },
-  solve: () => { },
   reset: () => { },
   solving: false,
-  setSolving: () => {},
+  setSolving: () => { },
   time: "",
-  setTime: () => {}
+  setTime: () => { }
 });
 
 function App() {
@@ -56,7 +53,7 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, setSolving: setSolving, visualize: visualize, solve: solve, reset: reset, time: time, setTime: setTime }}>
+    <AppContext.Provider value={{ newBoard: newBoard, board: board, setBoard: setBoard, solving: solving, setSolving: setSolving, visualize: visualize, reset: reset, time: time, setTime: setTime }}>
       <Header />
       <Timer />
       <Grid />

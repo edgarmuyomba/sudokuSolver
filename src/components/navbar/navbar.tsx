@@ -2,19 +2,20 @@ import styles from "./styles.module.scss";
 import Icon from "@mdi/react";
 import { mdiCheckboxOutline, mdiPlayBoxOutline, mdiShuffle } from "@mdi/js";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext, Element } from "../../App";
 import solveSudoku from "../../algorithm/solver";
 
 export default function Navbar() {
 
-    const { visualize, solve, newBoard, setBoard, setSolving, board } = useContext(AppContext);
+    const { visualize, newBoard, setBoard, setSolving, board, setTime } = useContext(AppContext);
+
+    const [steps, setSteps] = useState<Element[][][]>([]);
 
     const changeBoard = () => {
+        setTime("00:000")
         newBoard().then((board: Element[][]) => setBoard(board));
     }
-
-
 
     const handleSolve = () => {
 
@@ -22,9 +23,9 @@ export default function Navbar() {
 
         let tmpBoard = [...board];
         let solvingSteps = solveSudoku(tmpBoard);
-        
-        setBoard(tmpBoard);
+        setSteps(solvingSteps);
 
+        setBoard(tmpBoard);
 
         setTimeout(() =>
             setSolving(false), 50);
@@ -32,7 +33,7 @@ export default function Navbar() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.tile} onClick={() => visualize()}>
+            <div className={styles.tile} onClick={steps.length > 0 ? () => visualize(setTime, setBoard, setSolving, steps) : () => {}}>
                 <Icon path={mdiPlayBoxOutline} size={0.7} />
                 <p className={styles.label}>
                     Visualize
