@@ -136,3 +136,10 @@ input[type=number] {
         font-size: 1.2rem;
     }
 }
+
+@media (max-width: 550px) {
+    div.container {
+        width: 90vw;
+        height: 100vw;
+    }
+}
