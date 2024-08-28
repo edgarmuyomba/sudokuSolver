@@ -30,3 +30,6 @@ The live project can be found [here](https://sudoku-solver-eight-pi.vercel.app/)
 1. [React](https://react.dev/)
 2. [Typescript](https://www.typescriptlang.org/)
 3. [Scss](https://sass-lang.com/)
+
+> [!CAUTION]
+> At the time of this writing - 28th Aug, 2024, it seems like the owner of the sudoku api I was using appears to have taken it down. ( Evidence by the 404 error logged in the browser when a new board is clicked ). The tool might therefore lack the ability to generate a new board. This may or may not be fixed as I look for an alternative API. Feel free to reach out at [edgarmatthew247@gmail.com](mailto:edgarmatthew247@gmail.com) if you have any alternative. Thanks!
